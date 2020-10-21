@@ -21,6 +21,14 @@ namespace BOGOL2
                 default: return int.Parse(val);
             }
         }
+
+        static int Pow(int var, int exp)
+        {
+            if (exp == 0) return 1;
+            if (exp % 2 == 0) return Pow(var * var, exp / 2);
+            return var * Pow(var, exp-1);
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello and welcome to BOGOL!");
@@ -48,6 +56,7 @@ namespace BOGOL2
                             case "*": res = res1 * res2; break;
                             case "/": res = res1 / res2; break;
                             case "%": res = res1 % res2; break;
+                            case "^": res = Pow(res1, res2); break;
                             default: opOK = false; res = -1; break;
                         }
                         if (opOK)
